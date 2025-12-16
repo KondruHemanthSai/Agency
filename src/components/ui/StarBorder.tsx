@@ -12,7 +12,7 @@ interface StarBorderProps extends React.HTMLAttributes<HTMLElement> {
 const StarBorder: React.FC<StarBorderProps> = ({
     as: Component = 'div',
     className = '',
-    color = 'cyan',
+    color = 'white',
     speed = '4s',
     children,
     ...rest

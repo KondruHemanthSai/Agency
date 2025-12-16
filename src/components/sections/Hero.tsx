@@ -94,73 +94,9 @@ export function Hero() {
   return (
     <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
       {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Animated Gradient Orbs with Parallax */}
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-[100px]"
-          style={{
-            background: "radial-gradient(circle, hsl(var(--primary) / 0.3) 0%, transparent 70%)",
-            y: y1,
-          }}
-          animate={{
-            x: [0, 50, -30, 0],
-            scale: [1, 1.2, 0.9, 1],
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] rounded-full blur-[80px]"
-          style={{
-            background: "radial-gradient(circle, hsl(var(--secondary) / 0.25) 0%, transparent 70%)",
-            y: y2,
-          }}
-          animate={{
-            x: [0, -40, 30, 0],
-            scale: [1, 0.85, 1.15, 1],
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[120px]"
-          style={{
-            background: "radial-gradient(circle, hsl(var(--accent) / 0.15) 0%, transparent 70%)",
-            y: y3,
-          }}
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        {/* Floating Particles with Parallax */}
-        <motion.div style={{ y: y2 }}>
-          {particles.map((particle) => (
-            <Particle key={particle.id} {...particle} />
-          ))}
-        </motion.div>
-
-        {/* Animated Grid Pattern with Parallax */}
-        <motion.div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
-            backgroundSize: "64px 64px",
-            y: yGrid,
-          }}
-          animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        {/* Radial Vignette */}
-
-        {/* Top Glow Line */}
-        <motion.div
-          className="absolute top-0 left-0 right-0 h-px"
-          style={{ background: "linear-gradient(90deg, transparent, hsl(var(--primary) / 0.5), transparent)" }}
-          animate={{ opacity: [0.3, 0.8, 0.3] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        />
+      {/* Background Effects Removed to show EtheralShadow */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Transparent container to preserve layout if needed, but effects are gone */}
       </div>
 
       <motion.div style={{ y: yContent, opacity }} className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
@@ -213,9 +149,6 @@ export function Hero() {
             <Link to="/contact">
               <GetStartedButton />
             </Link>
-            <Button asChild variant="outline" size="lg">
-              <Link to="/services">View Services</Link>
-            </Button>
           </motion.div>
         </motion.div>
 

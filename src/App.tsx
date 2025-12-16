@@ -16,20 +16,26 @@ import { Loader } from "@/components/ui/loader";
 
 const queryClient = new QueryClient();
 
-import LiquidChrome from "@/components/ui/LiquidChrome";
+import EtheralShadow from "@/components/ui/EtheralShadow";
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme" attribute="class">
       <TooltipProvider>
         <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1, pointerEvents: 'none' }}>
-          <LiquidChrome
-            baseColor={[0.1, 0.1, 0.1]}
-            speed={0.2}
-            amplitude={0.3}
-            interactive={false}
+          <EtheralShadow
+            color="rgba(255, 255, 255, 0.4)"
+            animation={{
+              scale: 50,
+              speed: 60
+            }}
+            sizing="fill"
+            noise={{
+              opacity: 0.1,
+              scale: 1,
+            }}
           />
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.3)' }} />
+          {/* <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.3)' }} /> */}
         </div>
         <Loader />
         <Toaster />

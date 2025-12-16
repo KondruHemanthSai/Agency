@@ -16,42 +16,63 @@ import {
   Calendar,
   ArrowRight,
 } from "lucide-react";
+import StarBorder from "@/components/ui/StarBorder";
+import {
+  HoverSlider,
+  TextStaggerHover,
+  HoverSliderImageWrap,
+  HoverSliderImage,
+} from "@/components/ui/AnimatedSlideshow";
+
+// Helper to map index to generated images
+const getServiceImage = (index: number) => {
+  const images = [
+    "/assets/tech_web_dev_v3.png",       // Website Development
+    "/assets/tech_ui_landing_v3.png",    // Landing Pages
+    "/assets/tech_social_media_v4.png",  // Social Media Creatives
+    "/assets/tech_video_timeline_v3.png",// Short-form Video Editing
+    "/assets/tech_branding_v3.png",      // Branding
+    "/assets/tech_marketing_v3.png",     // Ads & Marketing
+    "/assets/tech_management_v3.png"     // Monthly Management
+  ];
+  return images[index] || "/assets/tech_web_dev_v3.png";
+};
 
 const services = [
   {
     icon: Globe,
     title: "Website Development",
-    description: "Custom, responsive websites built with modern technologies. Fast, secure, and optimized for conversions.",
+    description: "Modern, high-performance websites built with the latest tech stack.",
   },
   {
     icon: Layout,
     title: "Landing Pages",
-    description: "High-converting landing pages designed to capture leads and drive action from your campaigns.",
+    description: "High-conversion landing pages designed to turn visitors into leads.",
   },
   {
     icon: Camera,
     title: "Social Media Creatives",
-    description: "Eye-catching graphics and carousels that stop the scroll and boost engagement across platforms.",
+    description: "Engaging visuals and graphics tailored for your social channels.",
   },
   {
     icon: Video,
     title: "Short-form Video Editing",
-    description: "Professional video editing for Reels, TikToks, and YouTube Shorts that captivate audiences.",
+    description: "Professional editing for Reels, TikToks, and Shorts that go viral.",
   },
   {
     icon: Palette,
     title: "Branding",
-    description: "Complete brand identity packages including logos, color palettes, typography, and brand guidelines.",
+    description: "Complete visual identity including logos, typography, and brand guides.",
   },
   {
     icon: Megaphone,
     title: "Ads & Marketing",
-    description: "Strategic paid advertising campaigns across Google, Meta, and LinkedIn that deliver ROI.",
+    description: "Strategic ad campaigns and marketing materials to grow your business.",
   },
   {
     icon: Calendar,
     title: "Monthly Management",
-    description: "Ongoing website maintenance and social media management to keep your digital presence fresh.",
+    description: "Ongoing support, updates, and optimization for your digital presence.",
   },
 ];
 
@@ -66,41 +87,46 @@ const Services = () => {
             <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
           </div>
 
-          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-16">
             <SectionHeading
               badge="Our Services"
-              title="Everything You Need to Grow Online"
-              description="From websites to marketing campaigns, we offer comprehensive digital solutions tailored for startups and growing businesses."
+              title="Comprehensive Design & Tech Solutions"
+              description="We offer a full suite of services to elevate your brand and drive growth."
             />
           </div>
         </section>
 
-        {/* Services Grid */}
-        <section className="relative py-16">
+        {/* Services Slideshow */}
+        <section className="relative py-12">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((service, index) => (
-                <motion.div
-                  key={service.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <GlassCard className="h-full p-8 group">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                      <service.icon className="w-7 h-7 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-foreground mb-3">
-                      {service.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {service.description}
-                    </p>
-                  </GlassCard>
-                </motion.div>
-              ))}
-            </div>
+            <HoverSlider className="w-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+
+                {/* Text Side */}
+                <div className="flex flex-col gap-4 order-2 md:order-1">
+                  {services.map((service, index) => (
+                    <TextStaggerHover
+                      key={service.title}
+                      index={index}
+                      text={service.title}
+                      className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                    />
+                  ))}
+                </div>
+
+                {/* Image Side */}
+                <HoverSliderImageWrap className="rounded-2xl aspect-video md:aspect-[4/5] lg:aspect-square order-1 md:order-2 bg-muted/10">
+                  {services.map((service, index) => (
+                    <HoverSliderImage
+                      key={service.title}
+                      index={index}
+                      imageUrl={getServiceImage(index)}
+                      alt={service.title}
+                    />
+                  ))}
+                </HoverSliderImageWrap>
+              </div>
+            </HoverSlider>
           </div>
         </section>
 

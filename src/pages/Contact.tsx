@@ -145,7 +145,7 @@ const Contact = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="lg:col-span-3"
               >
-                <StarBorder as="div" className="w-full" color="cyan" speed="12s">
+                <StarBorder as="div" className="w-full" color="white" speed="60s">
                   <GlassCard className="p-8 lg:p-10 relative z-10 bg-background/80 backdrop-blur-xl">
                     {isSubmitted ? (
                       <div className="text-center py-12">

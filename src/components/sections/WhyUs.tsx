@@ -80,7 +80,7 @@ export function WhyUs() {
               key={reason.title}
               variants={itemVariants}
             >
-              <StarBorder as="div" className="h-full" color="cyan" speed="8s">
+              <StarBorder as="div" className="h-full" color="white" speed="60s">
                 <div className="flex gap-6 p-6 h-full rounded-2xl border border-border bg-card/30 hover:bg-card/50 hover:border-primary/30 transition-all duration-300 relative z-10">
                   <div className="flex-shrink-0">
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">

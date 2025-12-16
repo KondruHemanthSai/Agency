@@ -6,6 +6,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
+import StarBorder from "@/components/ui/StarBorder";
 
 const projects = [
     {
@@ -56,47 +57,52 @@ const Products = () => {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
+                                    className="h-full"
                                 >
-                                    <GlassCard className="h-full overflow-hidden p-0 group border-border/50 bg-card/40 hover:bg-card/60 transition-colors">
-                                        {/* Image Area */}
-                                        <div className="aspect-video overflow-hidden relative border-b border-border/50 bg-black/50">
-                                            <img
-                                                src={project.image}
-                                                alt={project.title}
-                                                className="w-full h-full object-contain object-center transition-transform duration-700 group-hover:scale-105"
-                                            />
-                                            {/* Subtle Overlay */}
-                                            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
-                                        </div>
+                                    <StarBorder as="div" className="h-full w-full" color="white" speed="60s">
+                                        <GlassCard className="h-full overflow-hidden p-0 group border-0 bg-transparent hover:bg-transparent transition-colors shadow-none">
+                                            <div className="bg-card/40 hover:bg-card/60 transition-colors h-full">
+                                                {/* Image Area */}
+                                                <div className="aspect-video overflow-hidden relative border-b border-border/50 bg-black/50">
+                                                    <img
+                                                        src={project.image}
+                                                        alt={project.title}
+                                                        className="w-full h-full object-contain object-center transition-transform duration-700 group-hover:scale-105"
+                                                    />
+                                                    {/* Subtle Overlay */}
+                                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+                                                </div>
 
-                                        {/* Content Area */}
-                                        <div className="p-8">
-                                            <div className="flex flex-wrap gap-2 mb-4">
-                                                {project.tags.map((tag) => (
-                                                    <span
-                                                        key={tag}
-                                                        className="px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20"
-                                                    >
-                                                        {tag}
-                                                    </span>
-                                                ))}
+                                                {/* Content Area */}
+                                                <div className="p-8">
+                                                    <div className="flex flex-wrap gap-2 mb-4">
+                                                        {project.tags.map((tag) => (
+                                                            <span
+                                                                key={tag}
+                                                                className="px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20"
+                                                            >
+                                                                {tag}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+
+                                                    <h3 className="text-2xl font-bold text-foreground mb-3">{project.title}</h3>
+                                                    <p className="text-muted-foreground mb-6 leading-relaxed">
+                                                        {project.description}
+                                                    </p>
+
+                                                    <div className="pt-4 border-t border-border/50">
+                                                        <Button className="gap-2 w-full sm:w-auto" variant="glow" asChild>
+                                                            <a href={project.link} target="_blank" rel="noopener noreferrer">
+                                                                <ExternalLink size={16} />
+                                                                View Project
+                                                            </a>
+                                                        </Button>
+                                                    </div>
+                                                </div>
                                             </div>
-
-                                            <h3 className="text-2xl font-bold text-foreground mb-3">{project.title}</h3>
-                                            <p className="text-muted-foreground mb-6 leading-relaxed">
-                                                {project.description}
-                                            </p>
-
-                                            <div className="pt-4 border-t border-border/50">
-                                                <Button className="gap-2 w-full sm:w-auto" variant="glow" asChild>
-                                                    <a href={project.link} target="_blank" rel="noopener noreferrer">
-                                                        <ExternalLink size={16} />
-                                                        View Project
-                                                    </a>
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    </GlassCard>
+                                        </GlassCard>
+                                    </StarBorder>
                                 </motion.div>
                             ))}
                         </div>

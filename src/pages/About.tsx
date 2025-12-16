@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Users, Target, Handshake } from "lucide-react";
+import StarBorder from "@/components/ui/StarBorder";
 
 const differentiators = [
   {
@@ -97,18 +98,21 @@ const About = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="h-full"
                 >
-                  <GlassCard className="h-full p-8 text-center">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mx-auto mb-6">
-                      <item.icon className="w-8 h-8 text-primary-foreground" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-foreground mb-4">
-                      {item.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {item.description}
-                    </p>
-                  </GlassCard>
+                  <StarBorder as="div" className="h-full w-full" color="white" speed="60s">
+                    <GlassCard className="h-full p-8 text-center border-0 bg-transparent shadow-none">
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mx-auto mb-6">
+                        <item.icon className="w-8 h-8 text-primary-foreground" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-foreground mb-4">
+                        {item.title}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {item.description}
+                      </p>
+                    </GlassCard>
+                  </StarBorder>
                 </motion.div>
               ))}
             </div>

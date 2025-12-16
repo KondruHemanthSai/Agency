@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    /* Buildoholics Global Theme - Liquid Chrome Optimized */
+    /* Buildoholics Global Theme - Monochrome Optimized */
     /* Force Dark Background (Transparent for LiquidChrome visibility) */
     --background: 240 10% 3.9%;
     /* Keeps fallback, but pages override to transparent */
@@ -13,50 +13,50 @@
     --foreground: 0 0% 100%;
 
     /* Card Backgrounds - More opaque for readability */
-    --card: 240 15% 5%;
+    --card: 240 10% 3.9%;
     --card-foreground: 0 0% 100%;
 
-    --popover: 240 15% 5%;
+    --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 100%;
 
-    /* Electric Cyan Primary - High Visibility */
-    --primary: 190 100% 50%;
-    --primary-foreground: 240 20% 5%;
+    /* Primary - White */
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
 
-    /* Secondary - Lighter Purple */
-    --secondary: 260 80% 70%;
-    --secondary-foreground: 0 0% 100%;
+    /* Secondary - Light Gray */
+    --secondary: 0 0% 80%;
+    --secondary-foreground: 0 0% 0%;
 
-    /* Muted Text - Much Brighter Grey for Readability */
-    --muted: 240 20% 20%;
-    --muted-foreground: 220 20% 80%;
+    /* Muted Text - Bright Grey for Readability */
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 63%;
     /* Light Grey */
 
-    --accent: 195 90% 50%;
-    --accent-foreground: 240 20% 5%;
+    --accent: 0 0% 100%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 20% 20%;
-    --input: 240 20% 20%;
-    --ring: 190 100% 50%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 100%;
     --radius: 0.75rem;
 
     /* Glass Effect Variables - Enhanced Contrast */
-    --glass-bg: 240 20% 10%;
-    --glass-border: 240 20% 25%;
+    --glass-bg: 0 0% 10%;
+    --glass-border: 0 0% 25%;
     --glass-blur: 24px;
 
     /* Sidebar - Matching Dark */
-    --sidebar-background: 240 15% 5%;
+    --sidebar-background: 0 0% 3.9%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 190 100% 50%;
-    --sidebar-primary-foreground: 240 20% 5%;
-    --sidebar-accent: 240 20% 20%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 20%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 240 20% 20%;
-    --sidebar-ring: 190 100% 50%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 0 0% 100%;
   }
 }
 
@@ -81,11 +81,11 @@
 
   .glass-card::before {
     content: '';
-    @apply absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none;
+    @apply absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-white via-gray-400 to-gray-600 bg-clip-text text-transparent;
     -webkit-background-clip: text;
   }
 
@@ -95,7 +95,7 @@
 
   .glow-effect::after {
     content: '';
-    @apply absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-xl opacity-0 transition-opacity duration-500;
+    @apply absolute -inset-1 bg-gradient-to-r from-white/20 to-gray-400/20 rounded-2xl blur-xl opacity-0 transition-opacity duration-500;
   }
 
   .glow-effect:hover::after {
@@ -152,7 +152,7 @@
 }
 
 .boxes .box>div {
-  --background: #5C8DF6;
+  --background: #ffffff;
   --top: auto;
   --right: auto;
   --bottom: auto;
@@ -177,18 +177,18 @@
 }
 
 .boxes .box>div:nth-child(2) {
-  --background: #145af2;
+  --background: #808080;
   --right: 0;
   --rotateY: 90deg;
 }
 
 .boxes .box>div:nth-child(3) {
-  --background: #447cf5;
+  --background: #404040;
   --rotateX: -90deg;
 }
 
 .boxes .box>div:nth-child(4) {
-  --background: #DBE3F4;
+  --background: #e0e0e0;
   --top: 0;
   --left: 0;
   --translateZ: calc(var(--size) * 3 * -1);

@@ -76,7 +76,7 @@ export function ServicesOverview() {
         >
           {services.map((service, index) => (
             <motion.div key={service.title} variants={itemVariants}>
-              <StarBorder as="div" className="h-full" color="cyan" speed="6s">
+              <StarBorder as="div" className="h-full" color="white" speed="60s">
                 <GlassCard className="h-full p-8 group relative z-10 bg-glass/40">
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     <service.icon className="w-7 h-7 text-primary" />

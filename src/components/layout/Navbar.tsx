@@ -1,52 +1,59 @@
-import { StaggeredMenu } from "@/components/ui/StaggeredMenu";
+import { useState, useEffect } from "react";
+import { NavBar } from "@/components/ui/NavBar";
+import { Home, User, Lightbulb, Package, Users, Mail } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
-const menuItems = [
-  { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
-  { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
-  { label: 'Services', ariaLabel: 'View our services', link: '/services' },
-  { label: 'Products', ariaLabel: 'View our products', link: '/products' },
-  { label: 'Clients', ariaLabel: 'See our clients', link: '/clients' },
-  { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
-];
+// Hook to detect scroll direction
+function useScrollDirection() {
+  const [scrollDirection, setScrollDirection] = useState("up");
 
-const socialItems = [
-  { label: 'Instagram', link: 'https://www.instagram.com/buildoholics/' },
-  { label: 'LinkedIn', link: 'https://www.linkedin.com/in/buildoholics/' }
-];
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
 
-import { Link } from "react-router-dom";
+    const updateScrollDirection = () => {
+      const scrollY = window.scrollY;
+      const direction = scrollY > lastScrollY ? "down" : "up";
+      if (direction !== scrollDirection && (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)) {
+        setScrollDirection(direction);
+      }
+      lastScrollY = scrollY > 0 ? scrollY : 0;
+    };
+    window.addEventListener("scroll", updateScrollDirection); // add event listener
+    return () => {
+      window.removeEventListener("scroll", updateScrollDirection); // clean up
+    }
+  }, [scrollDirection]);
+
+  return scrollDirection;
+}
 
 export function Navbar() {
-  const Logo = (
-    <Link to="/" className="flex items-center gap-2 pointer-events-auto">
-      <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-        <span className="text-primary-foreground font-bold text-lg">B</span>
-      </div>
-      <span className="text-xl font-bold text-foreground">
-        Buildoholics
-      </span>
-    </Link>
-  );
+  const scrollDirection = useScrollDirection();
+  const navItems = [
+    { name: 'Home', url: '/', icon: Home },
+    { name: 'About', url: '/about', icon: User },
+    { name: 'Services', url: '/services', icon: Lightbulb },
+    { name: 'Products', url: '/products', icon: Package },
+    { name: 'Clients', url: '/clients', icon: Users },
+    { name: 'Contact', url: '/contact', icon: Mail }
+  ];
 
   return (
-    <div className="fixed top-0 left-0 w-full h-24 z-50 pointer-events-none">
-      <StaggeredMenu
-        position="right"
-        items={menuItems}
-        socialItems={socialItems}
-        displaySocials={true}
-        displayItemNumbering={true}
-        className=""
-        isFixed={true}
-        changeMenuColorOnOpen={false}
-        colors={['hsl(var(--primary))', 'hsl(var(--secondary))']}
-        logoUrl="/favicon.ico"
-        accentColor="hsl(var(--primary))"
-        logo={Logo}
-        onMenuOpen={() => console.log('Menu opened')}
-        onMenuClose={() => console.log('Menu closed')}
-      >
-      </StaggeredMenu>
-    </div>
+    <>
+      <div className={`fixed top-6 left-6 z-50 transition-transform duration-300 ${scrollDirection === "down" ? "-translate-y-32" : "translate-y-0"}`}>
+        <Link to="/" className="flex items-center gap-2 pointer-events-auto">
+          <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+            <span className="text-primary-foreground font-bold text-lg">B</span>
+          </div>
+          <span className="text-xl font-bold text-foreground">
+            Buildoholics
+          </span>
+        </Link>
+      </div>
+      <div className={`fixed top-0 left-1/2 -translate-x-1/2 z-40 pt-6 transition-transform duration-300 ${scrollDirection === "down" ? "-translate-y-32" : "translate-y-0"}`}>
+        <NavBar items={navItems} />
+      </div>
+    </>
   );
 }
+

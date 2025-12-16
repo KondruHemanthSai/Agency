@@ -40,8 +40,8 @@ const StyledWrapper = styled.div`
   display: inline-block;
 
   .cssbuttons-io-button {
-    background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
-    color: white;
+    background-image: linear-gradient(19deg, #ffffff 0%, #a0a0a0 100%);
+    color: black;
     font-family: inherit;
     padding: 0.35em;
     padding-left: 1.2em;
@@ -58,14 +58,14 @@ const StyledWrapper = styled.div`
     cursor: pointer;
     text-transform: uppercase;
     font-weight: 500;
-    box-shadow: 0 0 1.6em rgba(183, 33, 255,0.3),0 0 1.6em hsla(191, 98%, 56%, 0.3);
+    box-shadow: 0 0 1.6em rgba(255, 255, 255, 0.3), 0 0 1.6em rgba(160, 160, 160, 0.3);
     transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
     width: 100%; /* Adapts to container if needed, but behaves inline-block via wrapper */
     justify-content: center; /* Center text if width expands */
   }
 
   .cssbuttons-io-button .icon {
-    background: white;
+    background: black;
     margin-left: 1em;
     position: absolute;
     display: flex;
@@ -85,7 +85,7 @@ const StyledWrapper = styled.div`
   .cssbuttons-io-button .icon svg {
     width: 1.1em;
     transition: transform 0.3s;
-    color: #B721FF;
+    color: white;
   }
 
   .cssbuttons-io-button:hover .icon svg {
