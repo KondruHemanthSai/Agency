@@ -153,7 +153,6 @@ export function Hero() {
         />
 
         {/* Radial Vignette */}
-        <div className="absolute inset-0 bg-gradient-radial from-transparent via-background/50 to-background" />
 
         {/* Top Glow Line */}
         <motion.div

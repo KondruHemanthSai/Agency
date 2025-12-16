@@ -7,6 +7,7 @@ import {
   Video
 } from "lucide-react";
 import { GlassCard } from "@/components/ui/GlassCard";
+import StarBorder from "@/components/ui/StarBorder";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const services = [
@@ -75,17 +76,19 @@ export function ServicesOverview() {
         >
           {services.map((service, index) => (
             <motion.div key={service.title} variants={itemVariants}>
-              <GlassCard className="h-full p-8 group">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <service.icon className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {service.description}
-                </p>
-              </GlassCard>
+              <StarBorder as="div" className="h-full" color="cyan" speed="6s">
+                <GlassCard className="h-full p-8 group relative z-10 bg-glass/40">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <service.icon className="w-7 h-7 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {service.description}
+                  </p>
+                </GlassCard>
+              </StarBorder>
             </motion.div>
           ))}
         </motion.div>

@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
-import { 
-  Rocket, 
-  Clock, 
-  Users, 
-  Zap 
+import {
+  Rocket,
+  Clock,
+  Users,
+  Zap
 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import StarBorder from "@/components/ui/StarBorder";
 
 const reasons = [
   {
@@ -67,7 +68,7 @@ export function WhyUs() {
           description="We're not just another agency. We're your growth partner from day one."
         />
 
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -78,21 +79,24 @@ export function WhyUs() {
             <motion.div
               key={reason.title}
               variants={itemVariants}
-              className="flex gap-6 p-6 rounded-2xl border border-border bg-card/30 hover:bg-card/50 hover:border-primary/30 transition-all duration-300"
             >
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                  <reason.icon className="w-6 h-6 text-primary-foreground" />
+              <StarBorder as="div" className="h-full" color="cyan" speed="8s">
+                <div className="flex gap-6 p-6 h-full rounded-2xl border border-border bg-card/30 hover:bg-card/50 hover:border-primary/30 transition-all duration-300 relative z-10">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                      <reason.icon className="w-6 h-6 text-primary-foreground" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                      {reason.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {reason.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">
-                  {reason.title}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {reason.description}
-                </p>
-              </div>
+              </StarBorder>
             </motion.div>
           ))}
         </motion.div>

@@ -16,8 +16,8 @@ const LiquidChrome: React.FC<LiquidChromeProps> = ({
     baseColor = [0.1, 0.1, 0.3],
     speed = 0.1,
     amplitude = 0.1,
-    frequencyX = 3,
-    frequencyY = 3,
+    frequencyX = 2,
+    frequencyY = 2,
     interactive = false,
     className,
     ...props
