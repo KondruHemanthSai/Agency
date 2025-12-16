@@ -16,10 +16,20 @@ import { Loader } from "@/components/ui/loader";
 
 const queryClient = new QueryClient();
 
+import LiquidChrome from "@/components/ui/LiquidChrome";
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme" attribute="class">
       <TooltipProvider>
+        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1, pointerEvents: 'none' }}>
+          <LiquidChrome
+            baseColor={[0.1, 0.1, 0.4]}
+            speed={1}
+            amplitude={0.4}
+            interactive={false}
+          />
+        </div>
         <Loader />
         <Toaster />
         <Sonner />

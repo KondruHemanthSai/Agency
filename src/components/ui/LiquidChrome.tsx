@@ -1,20 +1,19 @@
 import { useRef, useEffect } from 'react';
 import { Renderer, Program, Mesh, Triangle } from 'ogl';
+
 import './LiquidChrome.css';
 
-interface LiquidChromeProps {
-    baseColor?: [number, number, number];
+interface LiquidChromeProps extends React.HTMLAttributes<HTMLDivElement> {
+    baseColor?: number[];
     speed?: number;
     amplitude?: number;
     frequencyX?: number;
     frequencyY?: number;
     interactive?: boolean;
-    className?: string;
 }
 
-export const LiquidChrome = ({
-    // Default to Electric Cyan [0, 0.9, 1.0] to match theme
-    baseColor = [0.0, 0.9, 1.0],
+const LiquidChrome: React.FC<LiquidChromeProps> = ({
+    baseColor = [0.1, 0.1, 0.1],
     speed = 0.2,
     amplitude = 0.3,
     frequencyX = 3,
@@ -22,22 +21,16 @@ export const LiquidChrome = ({
     interactive = true,
     className,
     ...props
-}: LiquidChromeProps) => {
+}) => {
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (!containerRef.current) return;
 
         const container = containerRef.current;
-
-        // Create renderer
-        const renderer = new Renderer({
-            alpha: true,
-            antialias: true,
-            dpr: Math.min(window.devicePixelRatio, 2)
-        });
+        const renderer = new Renderer({ antialias: true, alpha: true });
         const gl = renderer.gl;
-        gl.clearColor(0, 0, 0, 0); // Transparent backgorund
+        gl.clearColor(0, 0, 0, 0); // Transparent cleanup if needed
 
         const vertexShader = `
       attribute vec2 position;
@@ -76,7 +69,7 @@ export const LiquidChrome = ({
           uv += (diff / (dist + 0.0001)) * ripple * falloff;
 
           vec3 color = uBaseColor / abs(sin(uTime - uv.y - uv.x));
-          return vec4(color, 1.0); // Full opacity for the color itself
+          return vec4(color, 1.0);
       }
 
       void main() {
@@ -106,68 +99,62 @@ export const LiquidChrome = ({
                 uAmplitude: { value: amplitude },
                 uFrequencyX: { value: frequencyX },
                 uFrequencyY: { value: frequencyY },
-                uMouse: { value: new Float32Array([0.5, 0.5]) } // Default center
-            },
-            transparent: true
+                uMouse: { value: new Float32Array([0, 0]) }
+            }
         });
         const mesh = new Mesh(gl, { geometry, program });
 
         function resize() {
             if (!container) return;
-            const width = container.offsetWidth;
-            const height = container.offsetHeight;
-
-            renderer.setSize(width, height);
-
-            const resUniform = program.uniforms.uResolution.value;
-            resUniform[0] = width;
-            resUniform[1] = height;
-            resUniform[2] = width / height;
+            const scale = 1;
+            renderer.setSize(container.offsetWidth * scale, container.offsetHeight * scale);
+            if (program.uniforms.uResolution) {
+                const resUniform = program.uniforms.uResolution.value;
+                resUniform[0] = gl.canvas.width;
+                resUniform[1] = gl.canvas.height;
+                resUniform[2] = gl.canvas.width / gl.canvas.height;
+            }
         }
-
         window.addEventListener('resize', resize);
         resize();
 
-        function handleMouseMove(event: MouseEvent | TouchEvent) {
+        function handleMouseMove(event: MouseEvent) {
             if (!container) return;
             const rect = container.getBoundingClientRect();
-            let clientX, clientY;
-
-            if ('touches' in event) {
-                if (event.touches.length > 0) {
-                    clientX = event.touches[0].clientX;
-                    clientY = event.touches[0].clientY;
-                } else {
-                    return;
-                }
-            } else {
-                clientX = (event as MouseEvent).clientX;
-                clientY = (event as MouseEvent).clientY;
+            const x = (event.clientX - rect.left) / rect.width;
+            const y = 1 - (event.clientY - rect.top) / rect.height;
+            if (program.uniforms.uMouse) {
+                const mouseUniform = program.uniforms.uMouse.value;
+                mouseUniform[0] = x;
+                mouseUniform[1] = y;
             }
+        }
 
-            const x = (clientX - rect.left) / rect.width;
-            const y = 1 - (clientY - rect.top) / rect.height;
-
-            const mouseUniform = program.uniforms.uMouse.value;
-            // Smooth lerp could be added here, but direct mapping is fine for now
-            mouseUniform[0] = x;
-            mouseUniform[1] = y;
+        function handleTouchMove(event: TouchEvent) {
+            if (event.touches.length > 0 && container) {
+                const touch = event.touches[0];
+                const rect = container.getBoundingClientRect();
+                const x = (touch.clientX - rect.left) / rect.width;
+                const y = 1 - (touch.clientY - rect.top) / rect.height;
+                if (program.uniforms.uMouse) {
+                    const mouseUniform = program.uniforms.uMouse.value;
+                    mouseUniform[0] = x;
+                    mouseUniform[1] = y;
+                }
+            }
         }
 
         if (interactive) {
-            // Use window for smoother tracking if dragging, or container for localized
-            // Since it's background, maybe window is better or body?
-            // Keeping it on container as requested, but might need to pointer-events: auto?
-            // Actually, if z-index is 0 and content is above, mouse events might be blocked.
-            // We'll attach to window to be safe for "background" interaction.
-            window.addEventListener('mousemove', handleMouseMove as any);
-            window.addEventListener('touchmove', handleMouseMove as any);
+            container.addEventListener('mousemove', handleMouseMove);
+            container.addEventListener('touchmove', handleTouchMove);
         }
 
         let animationId: number;
         function update(t: number) {
             animationId = requestAnimationFrame(update);
-            program.uniforms.uTime.value = t * 0.001 * speed;
+            if (program.uniforms.uTime) {
+                program.uniforms.uTime.value = t * 0.001 * speed;
+            }
             renderer.render({ scene: mesh });
         }
         animationId = requestAnimationFrame(update);
@@ -177,19 +164,19 @@ export const LiquidChrome = ({
         return () => {
             cancelAnimationFrame(animationId);
             window.removeEventListener('resize', resize);
-            if (interactive) {
-                window.removeEventListener('mousemove', handleMouseMove as any);
-                window.removeEventListener('touchmove', handleMouseMove as any);
+            if (interactive && container) {
+                container.removeEventListener('mousemove', handleMouseMove);
+                container.removeEventListener('touchmove', handleTouchMove);
             }
             if (gl.canvas.parentElement) {
                 gl.canvas.parentElement.removeChild(gl.canvas);
             }
-            // cleanup
-            const ext = gl.getExtension('WEBGL_lose_context');
-            if (ext) ext.loseContext();
+            // @ts-ignore
+            gl.getExtension('WEBGL_lose_context')?.loseContext();
         };
     }, [baseColor, speed, amplitude, frequencyX, frequencyY, interactive]);
 
-    // Combine classes including custom class
-    return <div ref={containerRef} className={`liquidChrome-container ${className || ''}`} {...props} />;
+    return <div ref={containerRef} className={`liquidChrome-container ${className}`} {...props} />;
 };
+
+export default LiquidChrome;
