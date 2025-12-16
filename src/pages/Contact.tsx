@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import StarBorder from "@/components/ui/StarBorder";
 import { LetsBuildTogetherButton } from "@/components/ui/GradientButton";
 import emailjs from "@emailjs/browser";
 import { useState, useRef } from "react";
@@ -144,79 +145,81 @@ const Contact = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="lg:col-span-3"
               >
-                <GlassCard className="p-8 lg:p-10">
-                  {isSubmitted ? (
-                    <div className="text-center py-12">
-                      <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-6">
-                        <CheckCircle className="w-8 h-8 text-primary" />
+                <StarBorder as="div" className="w-full" color="cyan" speed="12s">
+                  <GlassCard className="p-8 lg:p-10 relative z-10 bg-background/80 backdrop-blur-xl">
+                    {isSubmitted ? (
+                      <div className="text-center py-12">
+                        <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-6">
+                          <CheckCircle className="w-8 h-8 text-primary" />
+                        </div>
+                        <h3 className="text-2xl font-semibold text-foreground mb-3">
+                          Message Sent!
+                        </h3>
+                        <p className="text-muted-foreground mb-6">
+                          Thanks for reaching out. We'll get back to you within 24 hours.
+                        </p>
+                        <Button
+                          onClick={() => {
+                            setIsSubmitted(false);
+                            formRef.current?.reset();
+                          }}
+                          variant="outline"
+                        >
+                          Send Another Message
+                        </Button>
                       </div>
-                      <h3 className="text-2xl font-semibold text-foreground mb-3">
-                        Message Sent!
-                      </h3>
-                      <p className="text-muted-foreground mb-6">
-                        Thanks for reaching out. We'll get back to you within 24 hours.
-                      </p>
-                      <Button
-                        onClick={() => {
-                          setIsSubmitted(false);
-                          formRef.current?.reset();
-                        }}
-                        variant="outline"
-                      >
-                        Send Another Message
-                      </Button>
-                    </div>
-                  ) : (
-                    <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    ) : (
+                      <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                          <div className="space-y-2">
+                            <Label htmlFor="name">Name</Label>
+                            <Input
+                              id="name"
+                              name="Name"
+                              placeholder="Your name"
+                              required
+                              className="bg-background/50 border-border focus:border-primary"
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="email">Email</Label>
+                            <Input
+                              id="email"
+                              name="email"
+                              type="email"
+                              placeholder="you@company.com"
+                              required
+                              className="bg-background/50 border-border focus:border-primary"
+                            />
+                          </div>
+                        </div>
                         <div className="space-y-2">
-                          <Label htmlFor="name">Name</Label>
+                          <Label htmlFor="company">Company</Label>
                           <Input
-                            id="name"
-                            name="Name"
-                            placeholder="Your name"
-                            required
+                            id="company"
+                            name="company"
+                            placeholder="Your company name"
                             className="bg-background/50 border-border focus:border-primary"
                           />
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor="email">Email</Label>
-                          <Input
-                            id="email"
-                            name="email"
-                            type="email"
-                            placeholder="you@company.com"
+                          <Label htmlFor="message">Message</Label>
+                          <Textarea
+                            id="message"
+                            name="message"
+                            placeholder="Tell us about your project..."
+                            rows={6}
                             required
-                            className="bg-background/50 border-border focus:border-primary"
+                            className="bg-background/50 border-border focus:border-primary resize-none"
                           />
                         </div>
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="company">Company</Label>
-                        <Input
-                          id="company"
-                          name="company"
-                          placeholder="Your company name"
-                          className="bg-background/50 border-border focus:border-primary"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="message">Message</Label>
-                        <Textarea
-                          id="message"
-                          name="message"
-                          placeholder="Tell us about your project..."
-                          rows={6}
-                          required
-                          className="bg-background/50 border-border focus:border-primary resize-none"
-                        />
-                      </div>
-                      <div className="w-full">
-                        <LetsBuildTogetherButton type="submit" />
-                      </div>
-                    </form>
-                  )}
-                </GlassCard>
+                        <div className="w-full">
+                          <LetsBuildTogetherButton type="submit" />
+                        </div>
+                      </form>
+                    )}
+                  </GlassCard>
+                </StarBorder>
               </motion.div>
 
               {/* Contact Info */}
@@ -265,10 +268,10 @@ const Contact = () => {
               </motion.div>
             </div>
           </div>
-        </section>
-      </main>
+        </section >
+      </main >
       <Footer />
-    </div>
+    </div >
   );
 };
 

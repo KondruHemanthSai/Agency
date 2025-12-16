@@ -1,183 +1,54 @@
-import { GetStartedButton } from "@/components/ui/GradientButton";
-import { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { StaggeredMenu } from "@/components/ui/StaggeredMenu";
 import ThemeSwitch from "@/components/theme-switch";
 
-const navLinks = [
-  { name: "Home", path: "/" },
-  { name: "About", path: "/about" },
-  { name: "Services", path: "/services" },
-  { name: "Products", path: "/products" },
-  { name: "Clients", path: "/clients" },
-  { name: "Contact", path: "/contact" },
+const menuItems = [
+  { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
+  { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
+  { label: 'Services', ariaLabel: 'View our services', link: '/services' },
+  { label: 'Products', ariaLabel: 'View our products', link: '/products' },
+  { label: 'Clients', ariaLabel: 'See our clients', link: '/clients' },
+  { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
 ];
 
+const socialItems = [
+  { label: 'Instagram', link: 'https://www.instagram.com/buildoholics/' },
+  { label: 'LinkedIn', link: 'https://www.linkedin.com/in/buildoholics/' }
+];
+
+import { Link } from "react-router-dom";
+
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const location = useLocation();
-  const mouseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const isScrollingUpRef = useRef(false);
-
-  useEffect(() => {
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-
-          // Show navbar when scrolling up, hide when scrolling down
-          if (currentScrollY < lastScrollY && currentScrollY > 10) {
-            // Scrolling up
-            setIsVisible(true);
-            isScrollingUpRef.current = true;
-          } else if (currentScrollY > lastScrollY && currentScrollY > 10) {
-            // Scrolling down
-            setIsVisible(false);
-            isScrollingUpRef.current = false;
-          } else if (currentScrollY <= 10) {
-            // At the top, always show
-            setIsVisible(true);
-            isScrollingUpRef.current = false;
-          }
-
-          setLastScrollY(currentScrollY);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    const handleMouseMove = () => {
-      // Clear existing timeout
-      if (mouseTimeoutRef.current) {
-        clearTimeout(mouseTimeoutRef.current);
-      }
-
-      // Show navbar on mouse movement
-      if (window.scrollY > 10) {
-        setIsVisible(true);
-      }
-
-      // Set timeout to hide navbar after cursor inactivity (2 seconds)
-      mouseTimeoutRef.current = setTimeout(() => {
-        if (window.scrollY > 10 && !isScrollingUpRef.current) {
-          setIsVisible(false);
-        }
-      }, 2000);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("mousemove", handleMouseMove);
-      if (mouseTimeoutRef.current) {
-        clearTimeout(mouseTimeoutRef.current);
-      }
-    };
-  }, [lastScrollY]);
+  const Logo = (
+    <Link to="/" className="flex items-center gap-2 pointer-events-auto">
+      <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+        <span className="text-primary-foreground font-bold text-lg">B</span>
+      </div>
+      <span className="text-xl font-bold text-foreground">
+        Buildoholics
+      </span>
+    </Link>
+  );
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: isVisible ? 0 : -100 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed top-0 left-0 right-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-border"
-    >
-      <nav className="w-full px-8 py-6">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
-            <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xl">B</span>
-            </div>
-            <span className="text-2xl font-bold text-foreground">
-              Buildoholics
-            </span>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={cn(
-                  "px-6 py-3 rounded-lg text-base font-medium transition-all duration-300",
-                  location.pathname === link.path
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-white hover:bg-glass/10"
-                )}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
-
-
-
-          {/* CTA Button */}
-          <div className="hidden md:flex items-center gap-4">
-            <ThemeSwitch />
-            <Link to="/contact">
-              <GetStartedButton />
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden items-center gap-2">
-            <ThemeSwitch />
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg text-foreground hover:bg-glass/50 transition-colors"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden mt-4 pt-4 border-t border-glass-border"
-            >
-              <div className="flex flex-col gap-2">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    onClick={() => setIsOpen(false)}
-                    className={cn(
-                      "px-6 py-4 rounded-lg text-base font-medium transition-all duration-300",
-                      location.pathname === link.path
-                        ? "text-primary bg-primary/10"
-                        : "text-muted-foreground hover:text-white hover:bg-glass/10"
-                    )}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-                <Link to="/contact" onClick={() => setIsOpen(false)} className="mt-2 self-start">
-                  <GetStartedButton />
-                </Link>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
-    </motion.header>
+    <div className="fixed top-0 left-0 w-full h-24 z-50 pointer-events-none">
+      <StaggeredMenu
+        position="right"
+        items={menuItems}
+        socialItems={socialItems}
+        displaySocials={true}
+        displayItemNumbering={true}
+        className=""
+        isFixed={true}
+        changeMenuColorOnOpen={false}
+        colors={['hsl(var(--primary))', 'hsl(var(--secondary))']}
+        logoUrl="/favicon.ico"
+        accentColor="hsl(var(--primary))"
+        logo={Logo}
+        onMenuOpen={() => console.log('Menu opened')}
+        onMenuClose={() => console.log('Menu closed')}
+      >
+        <ThemeSwitch />
+      </StaggeredMenu>
+    </div>
   );
 }
