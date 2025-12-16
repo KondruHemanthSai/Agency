@@ -1,5 +1,4 @@
 import { StaggeredMenu } from "@/components/ui/StaggeredMenu";
-import ThemeSwitch from "@/components/theme-switch";
 
 const menuItems = [
   { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
@@ -47,7 +46,6 @@ export function Navbar() {
         onMenuOpen={() => console.log('Menu opened')}
         onMenuClose={() => console.log('Menu closed')}
       >
-        <ThemeSwitch />
       </StaggeredMenu>
     </div>
   );

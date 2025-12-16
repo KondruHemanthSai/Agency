@@ -4,95 +4,58 @@
 
 @layer base {
   :root {
-    /* Light Mode Defaults */
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 190 100% 40%;
-    /* Darker cyan for contrast on white */
-    --primary-foreground: 0 0% 98%;
-    --secondary: 260 60% 60%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 195 90% 45%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 80%;
-    --input: 240 5.9% 80%;
-    --ring: 190 100% 40%;
-    --radius: 0.75rem;
+    /* Buildoholics Global Theme - Liquid Chrome Optimized */
+    /* Force Dark Background (Transparent for LiquidChrome visibility) */
+    --background: 240 10% 3.9%;
+    /* Keeps fallback, but pages override to transparent */
 
-    /* Glass Effect (Light) */
-    --glass-bg: 0 0% 100%;
-    --glass-border: 240 5.9% 80%;
-    --glass-blur: 20px;
+    /* High Contrast White Text */
+    --foreground: 0 0% 100%;
 
-    /* Shadows (Light) */
-    --shadow-glow: 0 0 60px hsl(190 100% 50% / 0.1);
-    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.1);
+    /* Card Backgrounds - More opaque for readability */
+    --card: 240 15% 5%;
+    --card-foreground: 0 0% 100%;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+    --popover: 240 15% 5%;
+    --popover-foreground: 0 0% 100%;
 
-  .dark {
-    /* Buildoholics Dark Theme - Premium Glassmorphism */
-    --background: 0 0% 0%;
-    --foreground: 210 20% 95%;
-
-    --card: 240 15% 8%;
-    --card-foreground: 210 20% 95%;
-
-    --popover: 240 15% 8%;
-    --popover-foreground: 210 20% 95%;
-
-    /* Electric Cyan Primary */
+    /* Electric Cyan Primary - High Visibility */
     --primary: 190 100% 50%;
-    --primary-foreground: 240 20% 4%;
+    --primary-foreground: 240 20% 5%;
 
-    /* Soft Purple Secondary */
-    --secondary: 260 60% 60%;
-    --secondary-foreground: 210 20% 95%;
+    /* Secondary - Lighter Purple */
+    --secondary: 260 80% 70%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 240 15% 15%;
-    --muted-foreground: 210 15% 60%;
+    /* Muted Text - Much Brighter Grey for Readability */
+    --muted: 240 20% 20%;
+    --muted-foreground: 220 20% 80%;
+    /* Light Grey */
 
-    --accent: 195 90% 45%;
-    --accent-foreground: 240 20% 4%;
+    --accent: 195 90% 50%;
+    --accent-foreground: 240 20% 5%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 20% 95%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 240 15% 12%;
-    --input: 240 15% 12%;
+    --border: 240 20% 20%;
+    --input: 240 20% 20%;
     --ring: 190 100% 50%;
+    --radius: 0.75rem;
 
-    /* Glass Effect Variables */
-    --glass-bg: 240 15% 10%;
-    --glass-border: 240 15% 15%;
+    /* Glass Effect Variables - Enhanced Contrast */
+    --glass-bg: 240 20% 10%;
+    --glass-border: 240 20% 25%;
+    --glass-blur: 24px;
 
-    /* Shadow Variables */
-    --shadow-glow: 0 0 60px hsl(190 100% 50% / 0.3);
-    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.4);
-
-    --sidebar-background: 240 15% 6%;
-    --sidebar-foreground: 210 20% 95%;
+    /* Sidebar - Matching Dark */
+    --sidebar-background: 240 15% 5%;
+    --sidebar-foreground: 0 0% 100%;
     --sidebar-primary: 190 100% 50%;
-    --sidebar-primary-foreground: 240 20% 4%;
-    --sidebar-accent: 240 15% 12%;
-    --sidebar-accent-foreground: 210 20% 95%;
-    --sidebar-border: 240 15% 20%;
+    --sidebar-primary-foreground: 240 20% 5%;
+    --sidebar-accent: 240 20% 20%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 240 20% 20%;
     --sidebar-ring: 190 100% 50%;
   }
 }

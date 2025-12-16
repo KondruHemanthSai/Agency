@@ -25,7 +25,7 @@ const differentiators = [
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navbar />
       <main className="pt-32 pb-20">
         {/* Hero Section */}
@@ -50,8 +50,8 @@ const About = () => {
                 <span className="gradient-text">built for startups</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                Buildoholics is more than an agency — we're a team-driven partner that delivers 
-                end-to-end digital solutions. Websites, content, marketing — all under one roof, 
+                Buildoholics is more than an agency — we're a team-driven partner that delivers
+                end-to-end digital solutions. Websites, content, marketing — all under one roof,
                 with the focus and speed that startups need.
               </p>
             </motion.div>
@@ -73,7 +73,7 @@ const About = () => {
               </h2>
               <p className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-foreground leading-snug">
                 "Our mission is to help businesses build a{" "}
-                <span className="gradient-text">strong online presence</span> and convert 
+                <span className="gradient-text">strong online presence</span> and convert
                 attention into <span className="gradient-text">growth</span>."
               </p>
             </motion.div>

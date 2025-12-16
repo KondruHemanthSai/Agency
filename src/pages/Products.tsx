@@ -28,7 +28,7 @@ const projects = [
 
 const Products = () => {
     return (
-        <div className="min-h-screen bg-background">
+        <div className="min-h-screen">
             <Navbar />
             <main className="pt-32 pb-20">
                 {/* Hero / Header Section - Matching Services.tsx style */}

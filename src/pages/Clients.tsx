@@ -8,7 +8,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 const Clients = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navbar />
       <main className="pt-32 pb-20">
         {/* Hero Section */}

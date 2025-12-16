@@ -13,12 +13,12 @@ interface LiquidChromeProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const LiquidChrome: React.FC<LiquidChromeProps> = ({
-    baseColor = [0.1, 0.1, 0.1],
-    speed = 0.2,
-    amplitude = 0.3,
+    baseColor = [0.1, 0.1, 0.3],
+    speed = 0.1,
+    amplitude = 0.1,
     frequencyX = 3,
     frequencyY = 3,
-    interactive = true,
+    interactive = false,
     className,
     ...props
 }) => {
