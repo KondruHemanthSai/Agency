@@ -92,7 +92,7 @@ export function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
+    <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-12 sm:pt-24">
       {/* Background Effects */}
       {/* Background Effects Removed to show EtheralShadow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -104,7 +104,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-8"
+          className="space-y-6 sm:space-y-8"
         >
 
 
@@ -113,15 +113,15 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground tracking-tight leading-[1.1]"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground tracking-tight leading-[1.1] sm:leading-[1.1]"
           >
             We build{" "}
-            <span className="text-primary inline-block min-w-[200px] sm:min-w-[280px] md:min-w-[380px] text-left">
+            <span className="text-primary inline-block min-w-[180px] sm:min-w-[280px] md:min-w-[380px] text-left">
               <TypewriterText />
               <motion.span
                 animate={{ opacity: [1, 0] }}
                 transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
-                className="inline-block w-[3px] h-[0.9em] bg-primary ml-1 align-middle"
+                className="inline-block w-[2px] sm:w-[3px] h-[0.9em] bg-primary ml-1 align-middle"
               />
             </span>
             <br className="hidden sm:block" />
@@ -133,7 +133,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="max-w-2xl mx-auto text-lg sm:text-xl text-muted-foreground leading-relaxed"
+            className="max-w-2xl mx-auto text-base sm:text-xl text-muted-foreground leading-relaxed sm:leading-relaxed"
           >
             Buildoholics helps startups and businesses launch fast, look premium,
             and grow online — from websites to marketing.

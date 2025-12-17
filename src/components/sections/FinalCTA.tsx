@@ -33,14 +33,14 @@ const itemVariants = {
 
 export function FinalCTA() {
   return (
-    <section className="relative py-24 lg:py-32">
+    <section className="relative py-16 md:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="relative overflow-hidden rounded-3xl border border-border bg-card/50 backdrop-blur-xl p-12 lg:p-20"
+          className="relative overflow-hidden rounded-3xl border border-border bg-card/50 backdrop-blur-xl p-6 sm:p-12 lg:p-20"
         >
           {/* Background Effects */}
           <motion.div
@@ -64,7 +64,7 @@ export function FinalCTA() {
           <div className="relative z-10 text-center max-w-3xl mx-auto">
             <motion.h2
               variants={itemVariants}
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6"
+              className="text-2xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6"
             >
               Ready to build and grow
               <br />
