@@ -56,7 +56,7 @@ export function NavBar({ items, className, logo }: NavBarProps) {
                     <img
                         src="/assets/logo.svg"
                         alt="Logo"
-                        className="h-8 w-auto object-contain" // Smaller logo for mobile
+                        className="h-10 w-auto object-contain" // Larger logo for mobile
                     />
                 </Link>
 

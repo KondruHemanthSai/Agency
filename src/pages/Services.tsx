@@ -80,7 +80,7 @@ const Services = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <main className="pt-32 pb-20">
+      <main className="pt-24 md:pt-32 pb-12 md:pb-20">
         {/* Hero Section */}
         <section className="relative">
           <div className="absolute inset-0 overflow-hidden">
@@ -96,8 +96,8 @@ const Services = () => {
           </div>
         </section>
 
-        {/* Services Slideshow */}
-        <section className="relative py-12">
+        {/* Services Slideshow (Desktop) */}
+        <section className="relative py-12 hidden md:block">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <HoverSlider className="w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
@@ -130,6 +130,25 @@ const Services = () => {
           </div>
         </section>
 
+        {/* Services List (Mobile) */}
+        <section className="relative py-8 block md:hidden">
+          <div className="mx-auto max-w-7xl px-4 flex flex-col gap-6">
+            {services.map((service, index) => (
+              <GlassCard key={index} className="p-6">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-primary/10 text-primary shrink-0">
+                    <service.icon size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-foreground mb-2">{service.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
+                  </div>
+                </div>
+              </GlassCard>
+            ))}
+          </div>
+        </section>
+
         {/* Custom Plan CTA */}
         <section className="relative py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -138,7 +157,7 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="glass-card p-12 text-center"
+              className="glass-card p-6 md:p-12 text-center"
             >
               <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
                 Need a custom plan?
