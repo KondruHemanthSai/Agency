@@ -31,7 +31,7 @@ const contactInfo = [
     icon: Linkedin,
     label: "LinkedIn",
     value: "Buildoholics",
-    href: "#",
+    href: "https://www.linkedin.com/in/buildoholics/",
   },
 ];
 

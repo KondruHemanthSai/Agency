@@ -18,7 +18,7 @@ const footerLinks = {
 
 const socialLinks = [
   { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/buildoholics" },
-  { name: "LinkedIn", icon: Linkedin, href: "#" },
+  { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/buildoholics/" },
   { name: "Email", icon: Mail, href: "mailto:buildoholics@gmail.com" },
 ];
 
@@ -32,13 +32,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-6">
-              <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">B</span>
-              </div>
-              <span className="text-xl font-bold text-foreground">
-                Buildoholics
-              </span>
+            <Link to="/" className="flex items-center pointer-events-auto mb-6">
+              <img
+                src="/assets/logo.svg"
+                alt="Buildoholics Logo"
+                className="h-16 w-auto object-contain"
+              />
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
               Building websites, content, and growth systems for startups and growing businesses.
