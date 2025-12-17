@@ -40,7 +40,7 @@ export function Navbar() {
 
   return (
     <>
-      <div className={`fixed top-4 left-6 z-50 transition-transform duration-300 ${scrollDirection === "down" ? "-translate-y-32" : "translate-y-0"}`}>
+      <div className={`fixed top-4 left-6 z-50 transition-transform duration-300 hidden md:block ${scrollDirection === "down" ? "-translate-y-32" : "translate-y-0"}`}>
         <Link to="/" className="flex items-center pointer-events-auto">
           <img
             src="/assets/logo.svg"
@@ -49,7 +49,7 @@ export function Navbar() {
           />
         </Link>
       </div>
-      <div className={`fixed top-0 left-1/2 -translate-x-1/2 z-40 pt-6 transition-transform duration-300 ${scrollDirection === "down" ? "-translate-y-32" : "translate-y-0"}`}>
+      <div className={`fixed top-0 left-1/2 -translate-x-1/2 z-40 transition-transform duration-300 w-full md:w-auto ${scrollDirection === "down" ? "-translate-y-32" : "translate-y-0"}`}>
         <NavBar items={navItems} />
       </div>
     </>
