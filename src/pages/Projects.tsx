@@ -27,7 +27,7 @@ const projects = [
     },
 ];
 
-const Products = () => {
+const Projects = () => {
     return (
         <div className="min-h-screen">
             <Navbar />
@@ -137,4 +137,4 @@ const Products = () => {
     );
 };
 
-export default Products;
+export default Projects;

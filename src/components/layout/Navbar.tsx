@@ -33,21 +33,20 @@ export function Navbar() {
     { name: 'Home', url: '/', icon: Home },
     { name: 'About', url: '/about', icon: User },
     { name: 'Services', url: '/services', icon: Lightbulb },
-    { name: 'Products', url: '/products', icon: Package },
+    { name: 'Projects', url: '/projects', icon: Package },
     { name: 'Clients', url: '/clients', icon: Users },
     { name: 'Contact', url: '/contact', icon: Mail }
   ];
 
   return (
     <>
-      <div className={`fixed top-6 left-6 z-50 transition-transform duration-300 ${scrollDirection === "down" ? "-translate-y-32" : "translate-y-0"}`}>
-        <Link to="/" className="flex items-center gap-2 pointer-events-auto">
-          <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-lg">B</span>
-          </div>
-          <span className="text-xl font-bold text-foreground">
-            Buildoholics
-          </span>
+      <div className={`fixed top-4 left-6 z-50 transition-transform duration-300 ${scrollDirection === "down" ? "-translate-y-32" : "translate-y-0"}`}>
+        <Link to="/" className="flex items-center pointer-events-auto">
+          <img
+            src="/assets/logo.svg"
+            alt="Buildoholics Logo"
+            className="h-20 w-auto object-contain"
+          />
         </Link>
       </div>
       <div className={`fixed top-0 left-1/2 -translate-x-1/2 z-40 pt-6 transition-transform duration-300 ${scrollDirection === "down" ? "-translate-y-32" : "translate-y-0"}`}>
