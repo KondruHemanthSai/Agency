@@ -34,7 +34,7 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center pointer-events-auto mb-6">
               <img
-                src="/assets/logo.svg"
+                src="/logo.png"
                 alt="Buildoholics Logo"
                 className="h-14 w-auto object-contain"
               />
