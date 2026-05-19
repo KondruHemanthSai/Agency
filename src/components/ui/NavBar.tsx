@@ -62,9 +62,9 @@ export function NavBar({ items, className, logo }: NavBarProps) {
             <div className="absolute top-0 left-0 right-0 z-50 px-4 py-3 flex items-center justify-between">
                 <Link to="/" className="flex items-center">
                     <img
-                        src="/logo.png"
+                        src="/assets/logo.svg"
                         alt="Buildoholics Logo"
-                        className="h-[28px] w-auto object-contain"
+                        className="h-[32px] w-auto object-contain"
                     />
                 </Link>
 
@@ -85,9 +85,9 @@ export function NavBar({ items, className, logo }: NavBarProps) {
                         <SheetContent side="right" className="w-[80vw] sm:w-[350px] border-l border-white/5 bg-[#0a0a0a]/98 backdrop-blur-xl">
                             <SheetHeader className="text-left mb-8">
                                 <img
-                                    src="/logo.png"
+                                    src="/assets/logo.svg"
                                     alt="Logo"
-                                    className="h-[28px] w-auto object-contain self-start"
+                                    className="h-[32px] w-auto object-contain self-start"
                                 />
                             </SheetHeader>
                             <div className="flex flex-col gap-1">
@@ -139,9 +139,9 @@ export function NavBar({ items, className, logo }: NavBarProps) {
             {/* Logo — left */}
             <Link to="/" className="flex items-center pointer-events-auto">
                 <img
-                    src="/logo.png"
+                    src="/assets/logo.svg"
                     alt="Buildoholics Logo"
-                    className="h-[28px] w-auto object-contain"
+                    className="h-[32px] w-auto object-contain"
                 />
             </Link>
 
