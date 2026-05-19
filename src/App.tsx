@@ -12,7 +12,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 import { ThemeProvider } from "@/components/theme-provider";
-import { Loader } from "@/components/ui/loader";
+
 import ScrollToTop from "@/components/layout/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -25,7 +25,7 @@ const App = () => (
         <div className="fixed-bg" aria-hidden="true" />
         {/* Subtle grain texture overlay */}
         <div className="noise-overlay" aria-hidden="true" />
-        <Loader />
+
         <Toaster />
         <Sonner />
         <BrowserRouter>
