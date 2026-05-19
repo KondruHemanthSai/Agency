@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" fill="transparent"/>
+  <!-- Left half-circle (vertical bar with curve) -->
+  <path d="M180,120 L180,340 Q180,392 232,392 L232,392 Q180,392 180,340 Z" fill="white"/>
+  <rect x="180" y="120" width="36" height="272" rx="2" fill="white"/>
+  <!-- Right circle -->
+  <circle cx="290" cy="320" r="72" fill="white"/>
+  <!-- Gap between left and right -->
+  <rect x="214" y="120" width="6" height="272" fill="transparent"/>
+</svg>
