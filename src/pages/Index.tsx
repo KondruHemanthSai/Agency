@@ -3,10 +3,10 @@ import { Hero } from "@/components/sections/Hero";
 import { LogoStrip } from "@/components/sections/LogoStrip";
 import { Stats } from "@/components/sections/Stats";
 import { ServicesOverview } from "@/components/sections/ServicesOverview";
-import { CaseStudies } from "@/components/sections/CaseStudies";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FAQ } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { ServiceTunnel } from "@/components/sections/ServiceTunnel";
 import { Footer } from "@/components/layout/Footer";
 
 const Index = () => {
@@ -19,9 +19,9 @@ const Index = () => {
         <LogoStrip />
         <Stats />
         <ServicesOverview />
-        <CaseStudies />
         <Testimonials />
         <FAQ />
+        <ServiceTunnel />
         <FinalCTA />
         <Footer />
       </div>
