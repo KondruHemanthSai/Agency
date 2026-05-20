@@ -28,10 +28,39 @@ const letterVariants = {
   }),
 };
 
-export function ServiceTunnel() {
-  const leftLoop = [...allTags, ...allTags];
-  const rightLoop = [...allTags, ...allTags];
+/* Render one set of outline pills */
+function OutlinePills() {
+  return (
+    <div className="st-strip">
+      {allTags.map((tag, i) => (
+        <div key={i} className="st-pill-outline">
+          <div className="st-dot" />
+          <span>{tag}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
 
+/* Render one set of filled pills */
+function FilledPills() {
+  return (
+    <div className="st-strip">
+      {allTags.map((tag, i) => (
+        <div key={i} className="st-pill-filled">
+          <div className="st-check">
+            <svg width="10" height="8" viewBox="0 0 9 7" fill="none">
+              <path d="M1 3.5L3.5 6L8 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          <span>{tag}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export function ServiceTunnel() {
   return (
     <section className="service-tunnel-section" id="service-tunnel">
       <style>{`
@@ -209,23 +238,43 @@ export function ServiceTunnel() {
           overflow: hidden;
         }
 
+        /* ── Scroll wrapper: holds 2 identical strips ── */
+        .st-scroll {
+          display: flex;
+          width: fit-content;
+          will-change: transform;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+        }
+
+        .st-track--left .st-scroll {
+          animation: scrollRight 30s linear infinite;
+        }
+        .st-track--right .st-scroll {
+          animation: scrollRight 30s linear infinite;
+        }
+
+        /*
+         * -50% = exactly one strip's pixel width because
+         * the wrapper (fit-content) = 2 × strip width.
+         * Seamless: frame at 0% looks identical to frame at -50%.
+         */
+        @keyframes scrollLeft {
+          0%   { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
+        }
+        @keyframes scrollRight {
+          0%   { transform: translate3d(-50%, 0, 0); }
+          100% { transform: translate3d(0, 0, 0); }
+        }
+
+        /* ── Individual strip ── */
         .st-strip {
           display: flex;
           align-items: center;
           gap: 0.75rem;
-        }
-
-        .st-track--left .st-strip {
-          justify-content: flex-end;
-          animation: marqueeScroll 8s linear infinite;
-        }
-        .st-track--right .st-strip {
-          animation: marqueeScroll 8s linear infinite;
-        }
-
-        @keyframes marqueeScroll {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
+          flex-shrink: 0;
+          padding-right: 0.75rem; /* matches gap so seam is invisible */
         }
 
         /* ── Left pills: dashed outline ── */
@@ -324,31 +373,19 @@ export function ServiceTunnel() {
               </motion.div>
             </div>
 
-            {/* Left track — dashed outline pills */}
+            {/* Left track — dashed outline pills, scrolls left (toward edge) */}
             <div className="st-track st-track--left">
-              <div className="st-strip">
-                {leftLoop.map((tag, i) => (
-                  <div key={`l${i}`} className="st-pill-outline">
-                    <div className="st-dot" />
-                    <span>{tag}</span>
-                  </div>
-                ))}
+              <div className="st-scroll">
+                <OutlinePills />
+                <OutlinePills />
               </div>
             </div>
 
-            {/* Right track — filled check pills */}
+            {/* Right track — filled check pills, scrolls right (toward edge) */}
             <div className="st-track st-track--right">
-              <div className="st-strip">
-                {rightLoop.map((tag, i) => (
-                  <div key={`r${i}`} className="st-pill-filled">
-                    <div className="st-check">
-                      <svg width="10" height="8" viewBox="0 0 9 7" fill="none">
-                        <path d="M1 3.5L3.5 6L8 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                    <span>{tag}</span>
-                  </div>
-                ))}
+              <div className="st-scroll">
+                <FilledPills />
+                <FilledPills />
               </div>
             </div>
           </div>

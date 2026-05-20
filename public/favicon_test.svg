@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Minimalist modern lowercase "b" -->
+  
+  <!-- Left stem with rounded top and bottom -->
+  <path d="M210,128 C210,128 210,384 210,384 C210,401.67 195.67,416 178,416 C160.33,416 146,401.67 146,384 C146,384 146,200 146,200 C146,160.23 178.23,128 218,128 C218,128 210,128 210,128 Z" fill="#ffffff" />
+  
+  <!-- Right circle/bowl -->
+  <path d="M234,228 A 94 94 0 1 1 234 416 L 234,228 Z" fill="#ffffff" />
+  
+  <!-- Perfectly symmetrical version: -->
+  <!-- We'll use this simpler cleaner path instead to ensure it's iconic -->
+</svg>
