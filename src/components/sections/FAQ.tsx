@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     question: "Can I see examples of your work?",
-    answer: "Yes! Check out our case studies section above, or reach out and we'll share a detailed portfolio deck. We're proud of every project we deliver and happy to walk you through our process.",
+    answer: "Absolutely! Reach out and we'll share a detailed portfolio deck. We're proud of every project we deliver and happy to walk you through our process.",
   },
 ];
 
